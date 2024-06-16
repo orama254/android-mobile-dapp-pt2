@@ -1,5 +1,7 @@
 package com.example.waffle
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.waffle.composables.WalletConnectButton
+import com.example.waffle.composables.WaffleCard
 import com.example.waffle.ui.theme.WaffleTheme
 import dagger.hilt.android.AndroidEntryPoint
 import android.net.Uri
@@ -18,6 +21,8 @@ import com.solana.mobilewalletadapter.clientlib.ActivityResultSender
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,6 +43,13 @@ class MainActivity : ComponentActivity() {
                             identityName = application.getString(R.string.app_name),
                             activityResultSender = activityResultSender,
                             modifier = Modifier.align(Alignment.End)
+                        )
+                        WaffleCard(
+                            identityUri = Uri.parse(application.getString((R.string.id_url))),
+                            iconUri = Uri.parse(application.getString(R.string.id_favicon)),
+                            identityName = application.getString(R.string.app_name),
+                            intentSender = activityResultSender,
+                            modifier = Modifier.fillMaxSize(),
                         )
 
                     }

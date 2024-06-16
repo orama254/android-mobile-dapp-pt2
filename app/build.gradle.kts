@@ -73,8 +73,11 @@ dependencies {
 
     implementation("com.solanamobile:mobile-wallet-adapter-clientlib-ktx:1.1.0")
     implementation("com.github.metaplex-foundation:SolanaKT:2.1.0")
+    implementation("com.github.metaplex-foundation:metaplex-android:1.4.1") {
+        exclude("com.github.metaplex-foundation.kborsh", "kborsh-android")
+    }
 
-    kapt("com.google.dagger:hilt-compiler:2.47")
+        kapt("com.google.dagger:hilt-compiler:2.47")
     implementation("com.google.dagger:dagger:2.47")
     kapt("com.google.dagger:dagger-compiler:2.47")
     implementation("com.google.dagger:hilt-android:2.47")
